@@ -1,0 +1,10 @@
+app:
+  port: 4500
+  nodenv: 'development'
+db:
+  name: 'todo'
+  host: '127.0.0.1'
+  password: 'admin'
+  username: 'admin'
+  driver: 'postgres'
+  port: 5432
