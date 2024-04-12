@@ -8,6 +8,7 @@ import { UserRequestDto } from './dto/user.requset.dto';
 import { UserResponseDto } from './dto/user.response.dto';
 import { RoleService } from '../role/role.service';
 import { errorResponse } from 'src/exception/helper/error-response';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
@@ -16,6 +17,7 @@ export class UserService {
     @InjectRepository(User) private readonly userRepo: Repository<User>,
     private readonly roleService: RoleService,
     private readonly entityManager: EntityManager,
+    private readonly jwtService: JwtService,
   ) {}
 
   createUser = async (payload: UserRequestDto): Promise<void> => {
@@ -32,8 +34,18 @@ export class UserService {
           id: role.id,
         },
       });
+      // const jwt = await this.jwtService.getTokens(
+      //   { email: user.email },
+      //   'testing',
+      //   400,
+      // );
 
-      await this.entityManager.save(user);
+      // console.log(jwt);
+      console.log(user);
+
+      const userSave = await this.entityManager.save(user);
+
+      console.log(userSave);
       return;
     } catch (error) {
       return errorResponse(error);

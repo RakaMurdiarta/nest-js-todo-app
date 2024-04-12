@@ -5,6 +5,7 @@ import { ConfigModule } from 'src/shared/config/config.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Role, User } from 'src/entities';
 import { RoleService } from '../role/role.service';
+import { JsonWebTokenModule } from '../jwt/jwt.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Role])],

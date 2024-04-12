@@ -5,6 +5,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import dbConfig from 'src/config/loads/db.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RoleModule } from '../role/role.module';
+import { TaskModule } from '../task/task.module';
+import { JsonWebTokenModule } from '../jwt/jwt.module';
+import { JwtModule } from '@nestjs/jwt';
+import { TaskListModule } from '../task-list/task-list.module';
 
 @Module({
   imports: [
@@ -22,8 +26,11 @@ import { RoleModule } from '../role/role.module';
       inject: [ConfigService],
     }),
     CustomConfigModule.register({ folder: 'config' }),
+    JwtModule.register({ global: true }),
     UserModule,
     RoleModule,
+    TaskModule,
+    TaskListModule,
   ],
   controllers: [],
   providers: [],

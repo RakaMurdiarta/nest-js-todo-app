@@ -18,7 +18,7 @@ export class BaseApiResponse<T> {
   static success<T>(
     data: T | null,
     message: string = 'success',
-    status?: boolean,
+    status: boolean = true,
   ): BaseApiResponse<T> {
     return new BaseApiResponse(data, message, status);
   }

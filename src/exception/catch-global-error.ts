@@ -16,7 +16,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status = exception.getStatus();
     const message = exception.getResponse();
 
-    const baseReponse = BaseApiResponse.error(null, message as string);
+    const baseReponse = BaseApiResponse.error(
+      null,
+      typeof message === 'object'
+        ? (message as { message: string }).message
+        : (message as string),
+    );
 
     response.status(status).json(baseReponse);
   }

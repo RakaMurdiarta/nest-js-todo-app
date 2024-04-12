@@ -19,7 +19,7 @@ import { UserService } from 'src/modules/user/user.service';
 import { BaseApiResponse } from 'src/utils/response/base';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { BaseResponseGenericDecoratorsArrayData } from 'src/swagger/handle-generic-response';
-import { GET_ALL_USER_CONSTANT } from 'src/modules/user/constant/swagger-response';
+import { GET_ALL_USER_CONSTANT } from 'src/modules/user/constant/swagger-response-user';
 
 @Controller('v1/user')
 @ApiTags('User')
@@ -39,7 +39,6 @@ export class UserController {
     try {
       const users = await this.userService.getUsers();
       // const newReq = req as CustomRequest;
-
       return BaseApiResponse.success(users);
     } catch (error) {
       if (error instanceof HttpException) {
